@@ -1,7 +1,10 @@
 const OTP = require("../models/otp");
 const User = require("../models/user");
 const otpgenerator = require('otp-generator');
+const bcrypt = require("bcrypt");
 
+
+//send otp to the user's mail and in database with pre method
 exports.otpSave = async(req,res)=>{
   try {
     // fetch email
@@ -52,6 +55,50 @@ exports.otpSave = async(req,res)=>{
   }
 }
 
+
+// Singup
+
+exports.signUp = async(req,res)=>{
+  try {
+    // Fetch Data
+    const {userName,email,password}=req.body;
+
+    //validation
+    if(!userName || !email || !password || !otp){
+      return res.status(400).json({
+        success:false,
+        message:"Please fill all the fields"
+      })
+    }
+    // Check if user already exists
+    const userExists = await User.findOne({email:email});
+    if(userExists){
+      return res.status(400).json({
+        success:false,
+        message:"Email already Exists"
+      })
+    }
+
+    const latestOtp = await OTP.findOne({email:email}).sort({createdAt:-1})
+
+    if(!latestOtp){
+      return req.status(400).json({
+        success:false,
+        message:"OTP not found"
+      })
+    }
+    if(latestOtp != otp){
+      return res.status(400).json({
+        success:false,
+        message:"OTP is not Correct"
+      })
+    }
+    const hashPassword = await bcrypt.hash(password,10);
+
+  } catch (error) {
+    
+  }
+}
 
 
 

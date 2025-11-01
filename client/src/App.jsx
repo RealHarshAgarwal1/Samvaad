@@ -1,5 +1,6 @@
 import './App.css'
 import Signup from './Pages/Signup'
+import Otp from './Pages/Otp'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 
@@ -10,6 +11,9 @@ function App() {
       path:"/",
       element:
       <><Signup/></>
+    },
+    {
+      path:"/otp",element:<><Otp/></>
     }
   ])
   return (

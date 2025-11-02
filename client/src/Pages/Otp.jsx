@@ -5,7 +5,9 @@ const Otp = () => {
   const location = useLocation();
   const signUpData = location.state.signUpData;
   return (
-    <div>otp</div>
+    <div>
+      
+    </div>
   )
 }
 

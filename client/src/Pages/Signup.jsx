@@ -1,10 +1,10 @@
- import Samvaad from "../assets/small samvaad.png"
- import { FaEye } from "react-icons/fa";
- import { FaEyeSlash } from "react-icons/fa";
- import { useState } from "react";
- import { toast } from 'react-hot-toast'
+import Samvaad from "../assets/small samvaad.png"
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import { useState } from "react";
+import { toast } from 'react-hot-toast'
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Signup = () => {
 
@@ -98,11 +98,14 @@ const Signup = () => {
             ):(<FaEye onClick={()=>{setHideConfirmPassword(prev=>!prev)}} className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 cursor-pointer"/>)
           }
           </div>
-          <div className="flex justify-center items-center">
+          <div className=" mt-1 flex justify-center items-center">
             <button disabled={loading} type="submit" className="px-4 py-1 bg-red-300 text-white hover:bg-red-400 transition-all duration-200 rounded-full">SignUp</button>
           </div>
           
         </form>
+        <div className="flex justify-center items-center mt-3">
+          <p>Already have an account? <Link to="/login" className="text-red-300 hover:text-red-500">Login</Link></p>
+        </div>
       </div>
       </div>
     </div>

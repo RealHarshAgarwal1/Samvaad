@@ -17,6 +17,7 @@ const Otp = () => {
       renderInput={(props)=><input {...props}/>}
       placeholder=''
       
+      
       />
       
     </div>
